@@ -1,9 +1,5 @@
 
 
 export default function Doctors() {
-  return (
-    <div>
-      Doctors
-    </div>
-  )
+  return (<div>Doctors</div>)
 }

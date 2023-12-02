@@ -2,15 +2,17 @@
 import {Box, IconButton ,useTheme , Typography  } from '@mui/material';
 import {useContext} from 'react';
 import {ColorModeContext , tokens} from '../../theme' ;
-import {InputBase} from '@mui/material';
+// import {InputBase} from '@mui/material';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined' ;
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined' ;
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined' ;
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined' ;
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined' ;
-import SearchIcon from '@mui/icons-material/Search' ;
+// import SearchIcon from '@mui/icons-material/Search' ;
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import "react-pro-sidebar/dist/css/styles.css";
+import {SearchBar} from './SearchBar' ;
+
 //------------------
 import { ProSidebar, Menu , MenuItem } from 'react-pro-sidebar';
 import {Link} from 'react-router-dom' ;
@@ -32,7 +34,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 };
 
 //----------------------------
-const Topbar = () => {
+const Topbar = ({handleSearch , searchTitle}) => {
+    //----------------------
+
     const refMenu = useRef();
     useEffect(()=>{
         let handler = (e)=>{
@@ -63,10 +67,11 @@ const Topbar = () => {
         <Box display ='flex' justifyContent="space-between" p={2} sx={{boxShadow: theme.palette.mode !== 'dark'&&`0px 11px 13px -15px ${colors.grey[500]}`,position:'sticky',
             top:'0px',zIndex:'100',backgroundColor: `${theme.palette.mode !== 'dark'?colors.primary[400]:colors.primary[500]}`}}>
             <Box display='flex' backgroundColor={colors.primary[400]} borderRadius='8px' sx={{boxShadow: `inset 1px 12px 20px -7px ${theme.palette.mode === 'dark' ?colors.primary[200]:colors.grey[500]}`}}>
-                <InputBase sx={{ml:2 , flex: 1 }} placeholder="search" />
+                {/* <InputBase sx={{ml:2 , flex: 1 }} placeholder="search" />
                 <IconButton type='button' sx={{p:1 ,  color : `${colors.grey[100]} !important`}}>
                     <SearchIcon/>
-                </IconButton>
+                </IconButton> */}
+                <SearchBar handleSearch={handleSearch} toBeSearched={searchTitle}/>
             </Box>
             {/* <Box display="flex" justifyContent="center" alignItems="center" borderRadius='3px' sx={{overflow : 'hidden'}} >
                 <img alt="profile-user" width="100px" height="100px" style={{minWidth : '300px' , maxHeight : '40px'}}
